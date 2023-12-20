@@ -1,0 +1,53 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="tutorial"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="tutorial-resources" name="tutorial Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        
+        <resource type="download" name="tutorial.css" location="/css/tutorial.css"/>
+        <resource type="download" name="tutorial.js" location="/js/tutorial.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>tutorial</context>
+    </web-resource>
+
+    <web-resource key="tutorial-admin-menu-resources" name="tutorial-admin-menu-resources">
+        <transformation extension="js">
+            <transformer key="jsl18n"/>
+        </transformation>
+        <resource type="download" name="tutorial-atlaskit-screen.js" location="js/tutorial-atlaskit-screen.js"/>
+        <context>tutorial</context>
+    </web-resource>
+
+    <webwork1 key="tutorial-webwork">
+        <actions>
+            <action name="com.react.tutorial.panel.TutorialWebActionSupport" alias="TutorialWebActionSupport" roles-required="use">
+                <view name="success">/pages/tutorial-atlaskit-screen.vm</view>
+            </action>
+        </actions>
+    </webwork1>
+
+    <web-section key="tutorial-add-on-admin-menu" location="admin_plugins_menu">
+        <label key="tutorial.react"/>
+    </web-section>
+
+    <servlet name="sampleServlet"
+             class="com.react.tutorial.servlets.sampleServlet" key="sample">
+        <url-pattern>/tutorial</url-pattern>
+    </servlet>
+
+    <web-item key="admin-atlaskit-menu" section="admin_plugins_menu/tutorial-add-on-admin-menu">
+        <label key="tutorial.atlaskit.menu" />
+        <link linkId="admin-atlaskit-menu-link">/secure/TutorialWebActionSupport!default.jspa</link>
+    </web-item>
+</atlassian-plugin>

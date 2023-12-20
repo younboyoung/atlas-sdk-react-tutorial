@@ -1,0 +1,14 @@
+<html lang="em">
+    $webResourceManager.requireResource("com.react.tutorial.tutorial:tutorial-atlaskit-screen-resources")
+    $webResourceManager.requireResource("com.react.tutorial.tutorial:tutorial-admin-menu-resources")
+    <head>
+        <meta charset="UTF-8">
+        <title>$i18n.getText("tutorial.reactjs.atlaskit")</title>
+        <meta name="admin.active.table" content="admin-atlaskit-menu-link" />
+        <meta name="decorator" content="admin">
+        <meta name="decorator" content="atl.admin">
+    </head>
+    <body>
+        <div id="container"></div>
+    </body>
+</html>
